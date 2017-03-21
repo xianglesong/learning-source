@@ -1,0 +1,54 @@
+-locale
+'en_US'
+-breakiterator
+-classpath
+'/home/trustin/workspace/netty/trunk/target/checkout/target/classes:/home/trustin/.m2/repository/log4j/log4j/1.2.15/log4j-1.2.15.jar:/home/trustin/.m2/repository/org/jboss/logging/jboss-logging-spi/2.0.5.GA/jboss-logging-spi-2.0.5.GA.jar:/home/trustin/.m2/repository/org/apache/felix/org.osgi.core/1.2.0/org.osgi.core-1.2.0.jar:/home/trustin/.m2/repository/org/jboss/jbossxb/2.0.1.GA/jbossxb-2.0.1.GA.jar:/home/trustin/.m2/repository/org/jboss/jboss-common-core/2.2.14.GA/jboss-common-core-2.2.14.GA.jar:/home/trustin/.m2/repository/org/jboss/jboss-reflect/2.0.2.GA/jboss-reflect-2.0.2.GA.jar:/home/trustin/.m2/repository/com/google/protobuf/protobuf-java/2.1.0/protobuf-java-2.1.0.jar:/home/trustin/.m2/repository/apache-xerces/xercesImpl/2.9.1/xercesImpl-2.9.1.jar:/home/trustin/.m2/repository/org/jboss/jboss-mdr/2.0.2.GA/jboss-mdr-2.0.2.GA.jar:/home/trustin/.m2/repository/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar:/home/trustin/.m2/repository/org/slf4j/slf4j-api/1.5.8/slf4j-api-1.5.8.jar:/home/trustin/.m2/repository/org/jboss/xnio/xnio-api/1.2.1.GA/xnio-api-1.2.1.GA.jar:/home/trustin/.m2/repository/org/jboss/microcontainer/jboss-dependency/2.0.8.GA/jboss-dependency-2.0.8.GA.jar:/home/trustin/.m2/repository/com/google/code/guice/guice/1.0/guice-1.0.jar:/home/trustin/.m2/repository/org/apache/felix/org.osgi.compendium/1.2.0/org.osgi.compendium-1.2.0.jar:/home/trustin/.m2/repository/org/springframework/spring/2.0.8/spring-2.0.8.jar:/home/trustin/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/home/trustin/.m2/repository/sun-jaxb/jaxb-api/2.1.9/jaxb-api-2.1.9.jar:/home/trustin/.m2/repository/javax/activation/activation/1.1.1/activation-1.1.1.jar:/home/trustin/.m2/repository/wutka-dtdparser/dtdparser121/1.2.1/dtdparser121-1.2.1.jar:/home/trustin/.m2/repository/apache-xerces/xml-apis/2.9.1/xml-apis-2.9.1.jar:/home/trustin/.m2/repository/org/jboss/microcontainer/jboss-kernel/2.0.8.GA/jboss-kernel-2.0.8.GA.jar:/home/trustin/.m2/repository/org/jboss/xnio/xnio-nio/1.2.1.GA/xnio-nio-1.2.1.GA.jar'
+-doclet
+'org.jboss.apiviz.APIviz'
+-docletpath
+'/home/trustin/.m2/repository/org/jboss/apiviz/apiviz/1.3.0.GA/apiviz-1.3.0.GA.jar:/home/trustin/.m2/repository/jdepend/jdepend/2.9.1/jdepend-2.9.1.jar:/opt/jdk/jdk1.6.0_14/jre/../lib/tools.jar:/home/trustin/.m2/repository/junit/junit/4.4/junit-4.4.jar'
+-encoding
+'UTF-8'
+-overview
+'/home/trustin/workspace/netty/trunk/target/checkout/src/javadoc/overview.html'
+-protected
+-sourcepath
+'/home/trustin/workspace/netty/trunk/target/checkout/src/main/java'
+-link http://java.sun.com/javase/6/docs/api/
+            -link http://docs.jboss.org/xnio/latest/api/
+            -link http://code.google.com/apis/protocolbuffers/docs/reference/java/
+            -link http://java.sun.com/products/servlet/2.5/docs/servlet-2_5-mr2/
+            -link http://www.osgi.org/javadoc/r4v41/
+            -link http://google-guice.googlecode.com/svn/trunk/javadoc/
+            -link http://static.springframework.org/spring/docs/2.5.x/api/
+            -link http://www.slf4j.org/apidocs/
+            -link http://commons.apache.org/logging/commons-logging-1.1.1/apidocs/
+            -link http://logging.apache.org/log4j/1.2/apidocs/
+
+            -group "Low-level data representation" org.jboss.netty.buffer*
+            -group "Central interface for all I/O operations" org.jboss.netty.channel*
+            -group "Client & Server bootstrapping utilities" org.jboss.netty.bootstrap*
+            -group "Reusable I/O event interceptors" org.jboss.netty.handler*
+            -group "IoC (Dependency Injection) container integration" org.jboss.netty.container*
+            -group "Miscellaneous" org.jboss.netty.logging*:org.jboss.netty.util*
+
+            -sourceclasspath /home/trustin/workspace/netty/trunk/target/checkout/target/classes
+            -nopackagediagram
+-author
+-bottom
+'Copyright &#169; 2008-2009 <a href="http://www.jboss.org/">JBoss, by Red Hat</a>. All Rights Reserved.'
+-charset
+'UTF-8'
+-d
+'/home/trustin/workspace/netty/trunk/target/checkout/target/api'
+-docencoding
+'UTF-8'
+-doctitle
+'The Netty Project API Reference (3.1.0.GA, r1611)'
+-keywords
+-stylesheetfile
+'/home/trustin/workspace/netty/trunk/target/checkout/src/javadoc/stylesheet.css'
+-use
+-version
+-windowtitle
+'The Netty Project API Reference (3.1.0.GA, r1611)'

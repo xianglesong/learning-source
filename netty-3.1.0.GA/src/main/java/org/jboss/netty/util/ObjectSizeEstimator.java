@@ -1,0 +1,46 @@
+/*
+ * JBoss, Home of Professional Open Source
+ *
+ * Copyright 2008, Red Hat Middleware LLC, and individual contributors
+ * by the @author tags. See the COPYRIGHT.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+ */
+package org.jboss.netty.util;
+
+
+/**
+ * Estimates the size of an object in bytes.
+ *
+ * @author The Netty Project (netty-dev@lists.jboss.org)
+ * @author Trustin Lee (tlee@redhat.com)
+ *
+ * @version $Rev: 1587 $, $Date: 2009-07-20 13:50:03 +0900 (Mon, 20 Jul 2009) $
+ *
+ * @apiviz.landmark
+ * @apiviz.uses org.jboss.netty.util.EstimatableObjectWrapper
+ */
+public interface ObjectSizeEstimator {
+
+    /**
+     * Returns the estimated size of the specified object in bytes.
+     *
+     * @return a positive integer which represents the size of the specified
+     *         object in bytes
+     */
+    int estimateSize(Object o);
+}

@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US" lang="en_US">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>MapUtil xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../../api/org/jboss/netty/util/internal/MapUtil.html">View Javadoc</a></div><pre>
+
+<a name="1" href="#1">1</a>   <em class="jxr_comment">/*</em>
+<a name="2" href="#2">2</a>   <em class="jxr_comment"> * JBoss, Home of Professional Open Source</em>
+<a name="3" href="#3">3</a>   <em class="jxr_comment"> *</em>
+<a name="4" href="#4">4</a>   <em class="jxr_comment"> * Copyright 2008, Red Hat Middleware LLC, and individual contributors</em>
+<a name="5" href="#5">5</a>   <em class="jxr_comment"> * by the @author tags. See the COPYRIGHT.txt in the distribution for a</em>
+<a name="6" href="#6">6</a>   <em class="jxr_comment"> * full listing of individual contributors.</em>
+<a name="7" href="#7">7</a>   <em class="jxr_comment"> *</em>
+<a name="8" href="#8">8</a>   <em class="jxr_comment"> * This is free software; you can redistribute it and/or modify it</em>
+<a name="9" href="#9">9</a>   <em class="jxr_comment"> * under the terms of the GNU Lesser General Public License as</em>
+<a name="10" href="#10">10</a>  <em class="jxr_comment"> * published by the Free Software Foundation; either version 2.1 of</em>
+<a name="11" href="#11">11</a>  <em class="jxr_comment"> * the License, or (at your option) any later version.</em>
+<a name="12" href="#12">12</a>  <em class="jxr_comment"> *</em>
+<a name="13" href="#13">13</a>  <em class="jxr_comment"> * This software is distributed in the hope that it will be useful,</em>
+<a name="14" href="#14">14</a>  <em class="jxr_comment"> * but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a name="15" href="#15">15</a>  <em class="jxr_comment"> * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU</em>
+<a name="16" href="#16">16</a>  <em class="jxr_comment"> * Lesser General Public License for more details.</em>
+<a name="17" href="#17">17</a>  <em class="jxr_comment"> *</em>
+<a name="18" href="#18">18</a>  <em class="jxr_comment"> * You should have received a copy of the GNU Lesser General Public</em>
+<a name="19" href="#19">19</a>  <em class="jxr_comment"> * License along with this software; if not, write to the Free</em>
+<a name="20" href="#20">20</a>  <em class="jxr_comment"> * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA</em>
+<a name="21" href="#21">21</a>  <em class="jxr_comment"> * 02110-1301 USA, or see the FSF site: <a href="http://www.fsf.org." target="alexandria_uri">http://www.fsf.org.</a></em>
+<a name="22" href="#22">22</a>  <em class="jxr_comment"> */</em>
+<a name="23" href="#23">23</a>  <strong class="jxr_keyword">package</strong> org.jboss.netty.util.internal;
+<a name="24" href="#24">24</a>  
+<a name="25" href="#25">25</a>  <strong class="jxr_keyword">import</strong> java.util.ArrayList;
+<a name="26" href="#26">26</a>  <strong class="jxr_keyword">import</strong> java.util.Iterator;
+<a name="27" href="#27">27</a>  <strong class="jxr_keyword">import</strong> java.util.LinkedHashMap;
+<a name="28" href="#28">28</a>  <strong class="jxr_keyword">import</strong> java.util.List;
+<a name="29" href="#29">29</a>  <strong class="jxr_keyword">import</strong> java.util.Map;
+<a name="30" href="#30">30</a>  
+<a name="31" href="#31">31</a>  <em class="jxr_javadoccomment">/**</em>
+<a name="32" href="#32">32</a>  <em class="jxr_javadoccomment"> * A set of utility methods related with a {@link Map}.</em>
+<a name="33" href="#33">33</a>  <em class="jxr_javadoccomment"> *</em>
+<a name="34" href="#34">34</a>  <em class="jxr_javadoccomment"> * @author The Netty Project (netty-dev@lists.jboss.org)</em>
+<a name="35" href="#35">35</a>  <em class="jxr_javadoccomment"> * @author Trustin Lee (tlee@redhat.com)</em>
+<a name="36" href="#36">36</a>  <em class="jxr_javadoccomment"> *</em>
+<a name="37" href="#37">37</a>  <em class="jxr_javadoccomment"> * @version $Rev: 1124 $, $Date: 2009-04-03 16:41:54 +0900 (Fri, 03 Apr 2009) $</em>
+<a name="38" href="#38">38</a>  <em class="jxr_javadoccomment"> */</em>
+<a name="39" href="#39">39</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../org/jboss/netty/util/internal/MapUtil.html">MapUtil</a> {
+<a name="40" href="#40">40</a>  
+<a name="41" href="#41">41</a>      <em class="jxr_javadoccomment">/**</em>
+<a name="42" href="#42">42</a>  <em class="jxr_javadoccomment">     * Returns {@code true} if and only if the specified {@code map} is an</em>
+<a name="43" href="#43">43</a>  <em class="jxr_javadoccomment">     * ordered map, like {@link LinkedHashMap} is.</em>
+<a name="44" href="#44">44</a>  <em class="jxr_javadoccomment">     */</em>
+<a name="45" href="#45">45</a>      @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a name="46" href="#46">46</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isOrderedMap(Map&lt;?, ?&gt; map) {
+<a name="47" href="#47">47</a>          Class&lt;?&gt; mapType = map.getClass();
+<a name="48" href="#48">48</a>          <strong class="jxr_keyword">if</strong> (LinkedHashMap.<strong class="jxr_keyword">class</strong>.isAssignableFrom(mapType)) {
+<a name="49" href="#49">49</a>              <em class="jxr_comment">// LinkedHashMap is an ordered map.</em>
+<a name="50" href="#50">50</a>              <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
+<a name="51" href="#51">51</a>          }
+<a name="52" href="#52">52</a>  
+<a name="53" href="#53">53</a>          <em class="jxr_comment">// Not a LinkedHashMap - start autodetection.</em>
+<a name="54" href="#54">54</a>  
+<a name="55" href="#55">55</a>          <em class="jxr_comment">// Detect Apache Commons Collections OrderedMap implementations.</em>
+<a name="56" href="#56">56</a>          Class&lt;?&gt; type = mapType;
+<a name="57" href="#57">57</a>          <strong class="jxr_keyword">while</strong> (type != <strong class="jxr_keyword">null</strong>) {
+<a name="58" href="#58">58</a>              <strong class="jxr_keyword">for</strong> (Class&lt;?&gt; i: type.getInterfaces()) {
+<a name="59" href="#59">59</a>                  <strong class="jxr_keyword">if</strong> (i.getName().endsWith(<span class="jxr_string">"OrderedMap"</span>)) {
+<a name="60" href="#60">60</a>                      <em class="jxr_comment">// Seems like it's an ordered map - guessed from that</em>
+<a name="61" href="#61">61</a>                      <em class="jxr_comment">// it implements OrderedMap interface.</em>
+<a name="62" href="#62">62</a>                      <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
+<a name="63" href="#63">63</a>                  }
+<a name="64" href="#64">64</a>              }
+<a name="65" href="#65">65</a>              type = type.getSuperclass();
+<a name="66" href="#66">66</a>          }
+<a name="67" href="#67">67</a>  
+<a name="68" href="#68">68</a>          <em class="jxr_comment">// Does not implement OrderedMap interface.  As a last resort, try to</em>
+<a name="69" href="#69">69</a>          <em class="jxr_comment">// create a new instance and test if the insertion order is maintained.</em>
+<a name="70" href="#70">70</a>          Map newMap;
+<a name="71" href="#71">71</a>          <strong class="jxr_keyword">try</strong> {
+<a name="72" href="#72">72</a>              newMap = (Map) mapType.newInstance();
+<a name="73" href="#73">73</a>          } <strong class="jxr_keyword">catch</strong> (Exception e) {
+<a name="74" href="#74">74</a>              <em class="jxr_comment">// No default constructor - cannot proceed anymore.</em>
+<a name="75" href="#75">75</a>              <strong class="jxr_keyword">return</strong> false;
+<a name="76" href="#76">76</a>          }
+<a name="77" href="#77">77</a>  
+<a name="78" href="#78">78</a>          <em class="jxr_comment">// Run some tests.</em>
+<a name="79" href="#79">79</a>          List&lt;String&gt; expectedKeys = <strong class="jxr_keyword">new</strong> ArrayList&lt;String&gt;();
+<a name="80" href="#80">80</a>          String dummyValue = <span class="jxr_string">"dummyValue"</span>;
+<a name="81" href="#81">81</a>          <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">short</strong> element: ORDER_TEST_SAMPLES) {
+<a name="82" href="#82">82</a>              String key = String.valueOf(element);
+<a name="83" href="#83">83</a>              newMap.put(key, dummyValue);
+<a name="84" href="#84">84</a>              expectedKeys.add(key);
+<a name="85" href="#85">85</a>  
+<a name="86" href="#86">86</a>              Iterator&lt;String&gt; it = expectedKeys.iterator();
+<a name="87" href="#87">87</a>              <strong class="jxr_keyword">for</strong> (Object actualKey: newMap.keySet()) {
+<a name="88" href="#88">88</a>                  <strong class="jxr_keyword">if</strong> (!it.next().equals(actualKey)) {
+<a name="89" href="#89">89</a>                      <em class="jxr_comment">// Did not pass the test.</em>
+<a name="90" href="#90">90</a>                      <strong class="jxr_keyword">return</strong> false;
+<a name="91" href="#91">91</a>                  }
+<a name="92" href="#92">92</a>              }
+<a name="93" href="#93">93</a>          }
+<a name="94" href="#94">94</a>  
+<a name="95" href="#95">95</a>          <em class="jxr_comment">// The specified map passed the insertion order test.</em>
+<a name="96" href="#96">96</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
+<a name="97" href="#97">97</a>      }
+<a name="98" href="#98">98</a>  
+<a name="99" href="#99">99</a>      <strong class="jxr_keyword">private</strong> <a href="../../../../../org/jboss/netty/util/internal/MapUtil.html">MapUtil</a>() {
+<a name="100" href="#100">100</a>         <em class="jxr_comment">// Unused</em>
+<a name="101" href="#101">101</a>     }
+<a name="102" href="#102">102</a> 
+<a name="103" href="#103">103</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">short</strong>[] ORDER_TEST_SAMPLES = {
+<a name="104" href="#104">104</a>         682, 807, 637, 358, 570, 828, 407, 319,
+<a name="105" href="#105">105</a>         105,  41, 563, 544, 518, 298, 418,  50,
+<a name="106" href="#106">106</a>         156, 769, 984, 503, 191, 578, 309, 710,
+<a name="107" href="#107">107</a>         327, 720, 591, 939, 374, 707,  43, 463,
+<a name="108" href="#108">108</a>         227, 174,  30, 531, 135, 930, 190, 823,
+<a name="109" href="#109">109</a>         925, 835, 328, 239, 415, 500, 144, 460,
+<a name="110" href="#110">110</a>          83, 774, 921,   4,  95, 468, 687, 493,
+<a name="111" href="#111">111</a>         991, 436, 245, 742, 149, 821, 142, 782,
+<a name="112" href="#112">112</a>         297, 918, 917, 424, 978, 992,  79, 906,
+<a name="113" href="#113">113</a>         535, 515, 850,  80, 125, 378, 307, 883,
+<a name="114" href="#114">114</a>         836, 160,  27, 630, 668, 226, 560, 698,
+<a name="115" href="#115">115</a>         467, 829, 476, 163, 977, 367, 325, 184,
+<a name="116" href="#116">116</a>         204, 312, 486,  53, 179, 592, 252, 750,
+<a name="117" href="#117">117</a>         893, 517, 937, 124, 148, 719, 973, 566,
+<a name="118" href="#118">118</a>         405, 449, 452, 777, 349, 761, 167, 783,
+<a name="119" href="#119">119</a>         220, 802, 117, 604, 216, 363, 120, 621,
+<a name="120" href="#120">120</a>         219, 182, 817, 244, 438, 465, 934, 888,
+<a name="121" href="#121">121</a>         628, 209, 631,  17, 870, 679, 826, 945,
+<a name="122" href="#122">122</a>         680, 848, 974, 573, 626, 865, 109, 317,
+<a name="123" href="#123">123</a>          91, 494, 965, 473, 725, 388, 302, 936,
+<a name="124" href="#124">124</a>         660, 150, 122, 949, 295, 392,  63, 634,
+<a name="125" href="#125">125</a>         772, 143, 990, 895, 538,  59, 541,  32,
+<a name="126" href="#126">126</a>         669, 321, 811, 756,  82, 955, 953, 636,
+<a name="127" href="#127">127</a>         390, 162, 688, 444,  70, 590, 183, 745,
+<a name="128" href="#128">128</a>         543, 666, 951, 642, 747, 765,  98, 469,
+<a name="129" href="#129">129</a>         884, 929, 178, 721, 994, 840, 353, 726,
+<a name="130" href="#130">130</a>         940, 759, 624, 919, 667, 629, 272, 979,
+<a name="131" href="#131">131</a>         326, 608, 453,  11, 322, 347, 647, 354,
+<a name="132" href="#132">132</a>         381, 746, 472, 890, 249, 536, 733, 404,
+<a name="133" href="#133">133</a>         170, 959,  34, 899, 195, 651, 140, 856,
+<a name="134" href="#134">134</a>         201, 237,  51, 933, 268, 849, 294, 115,
+<a name="135" href="#135">135</a>         157,  14, 854, 373, 186, 872,  71, 523,
+<a name="136" href="#136">136</a>         931, 952, 655, 561, 607, 862, 554, 661,
+<a name="137" href="#137">137</a>         313, 909, 511, 752, 986, 311, 287, 775,
+<a name="138" href="#138">138</a>         505, 878, 422, 103, 299, 119, 107, 344,
+<a name="139" href="#139">139</a>         487, 776, 445, 218, 549, 697, 454,   6,
+<a name="140" href="#140">140</a>         462, 455,  52, 481, 594, 126, 112,  66,
+<a name="141" href="#141">141</a>         877, 172, 153, 912, 834, 741, 610, 915,
+<a name="142" href="#142">142</a>         964, 831, 575, 714, 250, 461, 814, 913,
+<a name="143" href="#143">143</a>         369, 542, 882, 851, 427, 838, 867, 507,
+<a name="144" href="#144">144</a>         434, 569,  20, 950, 792, 605, 798, 962,
+<a name="145" href="#145">145</a>         923, 258, 972, 762, 809, 843, 674, 448,
+<a name="146" href="#146">146</a>         280, 495, 285, 822, 283, 147, 451, 993,
+<a name="147" href="#147">147</a>         794, 982, 748, 189, 274,  96,  73, 810,
+<a name="148" href="#148">148</a>         401, 261, 277, 346, 527, 645, 601, 868,
+<a name="149" href="#149">149</a>         248, 879, 371, 428, 559, 278, 265,  62,
+<a name="150" href="#150">150</a>         225, 853, 483, 771,   9,   8, 339, 653,
+<a name="151" href="#151">151</a>         263,  28, 477, 995, 208, 880, 292, 480,
+<a name="152" href="#152">152</a>         516, 457, 286, 897,  21, 852, 971, 658,
+<a name="153" href="#153">153</a>         623, 528, 316, 471, 860, 306, 638, 711,
+<a name="154" href="#154">154</a>         875, 671, 108, 158, 646,  24, 257, 724,
+<a name="155" href="#155">155</a>         193, 341, 902, 599, 565, 334, 506, 684,
+<a name="156" href="#156">156</a>         960, 780, 429, 801, 910, 308, 383, 901,
+<a name="157" href="#157">157</a>         489,  81, 512, 164, 755, 514, 723, 141,
+<a name="158" href="#158">158</a>         296, 958, 686,  15, 799, 579, 598, 558,
+<a name="159" href="#159">159</a>         414,  64, 420, 730, 256, 131,  45, 129,
+<a name="160" href="#160">160</a>         259, 338, 999, 175, 740, 790, 324, 985,
+<a name="161" href="#161">161</a>         896, 482, 841, 606, 377, 111, 372, 699,
+<a name="162" href="#162">162</a>         988, 233, 243, 203, 781, 969, 903, 662,
+<a name="163" href="#163">163</a>         632, 301,  44, 981,  36, 412, 946, 816,
+<a name="164" href="#164">164</a>         284, 447, 214, 672, 758, 954, 804,   2,
+<a name="165" href="#165">165</a>         928, 886, 421, 596, 574,  16, 892,  68,
+<a name="166" href="#166">166</a>         546, 522, 490, 873, 656, 696, 864, 130,
+<a name="167" href="#167">167</a>          40, 393, 926, 394, 932, 876, 664, 293,
+<a name="168" href="#168">168</a>         154, 916,  55, 196, 842, 498, 177, 948,
+<a name="169" href="#169">169</a>         540, 127, 271, 113, 844, 576, 132, 943,
+<a name="170" href="#170">170</a>          12, 123, 291,  31, 212, 529, 547, 171,
+<a name="171" href="#171">171</a>         582, 609, 793, 830, 221, 440, 568, 118,
+<a name="172" href="#172">172</a>         406, 194, 827, 360, 622, 389, 800, 571,
+<a name="173" href="#173">173</a>         213, 262, 403, 408, 881, 289, 635, 967,
+<a name="174" href="#174">174</a>         432, 376, 649, 832, 857, 717, 145, 510,
+<a name="175" href="#175">175</a>         159, 980, 683, 580, 484, 379, 246,  88,
+<a name="176" href="#176">176</a>         567, 320, 643,   7, 924, 397,  10, 787,
+<a name="177" href="#177">177</a>         845, 779, 670, 716,  19, 600, 382,   0,
+<a name="178" href="#178">178</a>         210, 665, 228,  97, 266,  90, 304, 456,
+<a name="179" href="#179">179</a>         180, 152, 425, 310, 768, 223, 702, 997,
+<a name="180" href="#180">180</a>         577, 663, 290, 537, 416, 426, 914, 691,
+<a name="181" href="#181">181</a>          23, 281, 497, 508,  48, 681, 581, 728,
+<a name="182" href="#182">182</a>          99, 795, 530, 871, 957, 889, 206, 813,
+<a name="183" href="#183">183</a>         839, 709, 805, 253, 151, 613,  65, 654,
+<a name="184" href="#184">184</a>          93, 639, 784, 891, 352,  67, 430, 754,
+<a name="185" href="#185">185</a>          76, 187, 443, 676, 362, 961, 874, 330,
+<a name="186" href="#186">186</a>         331, 384,  85, 217, 855, 818, 738, 361,
+<a name="187" href="#187">187</a>         314,   3, 615, 520, 355, 920, 689,  22,
+<a name="188" href="#188">188</a>         188,  49, 904, 935, 136, 475, 693, 749,
+<a name="189" href="#189">189</a>         519, 812, 100, 207, 963, 364, 464, 572,
+<a name="190" href="#190">190</a>         731, 230, 833, 385, 499, 545, 273, 232,
+<a name="191" href="#191">191</a>         398, 478, 975, 564, 399, 504,  35, 562,
+<a name="192" href="#192">192</a>         938, 211,  26, 337,  54, 614, 586, 433,
+<a name="193" href="#193">193</a>         450, 763, 238, 305, 941, 370, 885, 837,
+<a name="194" href="#194">194</a>         234, 110, 137, 395, 368, 695, 342, 907,
+<a name="195" href="#195">195</a>         396, 474, 176, 737, 796, 446,  37, 894,
+<a name="196" href="#196">196</a>         727, 648, 431,   1, 366, 525, 553, 704,
+<a name="197" href="#197">197</a>         329, 627, 479,  33, 492, 260, 241,  86,
+<a name="198" href="#198">198</a>         185, 491, 966, 247,  13, 587, 602, 409,
+<a name="199" href="#199">199</a>         335, 650, 235, 611, 470, 442, 597, 254,
+<a name="200" href="#200">200</a>         343, 539, 146, 585, 593, 641, 770,  94,
+<a name="201" href="#201">201</a>         976, 705, 181, 255, 315, 718, 526, 987,
+<a name="202" href="#202">202</a>         692, 983, 595, 898, 282, 133, 439, 633,
+<a name="203" href="#203">203</a>         534, 861, 269, 619, 677, 502, 375, 224,
+<a name="204" href="#204">204</a>         806, 869, 417, 584, 612, 803,  58,  84,
+<a name="205" href="#205">205</a>         788, 797,  38, 700, 751, 603, 652,  57,
+<a name="206" href="#206">206</a>         240, 947, 350, 270, 333, 116, 736,  69,
+<a name="207" href="#207">207</a>          74, 104, 767, 318, 735, 859, 357, 555,
+<a name="208" href="#208">208</a>         411, 267, 712, 675, 532, 825, 496, 927,
+<a name="209" href="#209">209</a>         942, 102,  46, 192, 114, 744, 138, 998,
+<a name="210" href="#210">210</a>          72, 617, 134, 846, 166,  77, 900,   5,
+<a name="211" href="#211">211</a>         303, 387, 400,  47, 729, 922, 222, 197,
+<a name="212" href="#212">212</a>         351, 509, 524, 165, 485, 300, 944, 380,
+<a name="213" href="#213">213</a>         625, 778, 685,  29, 589, 766, 161, 391,
+<a name="214" href="#214">214</a>         423,  42, 734, 552, 215, 824, 908, 229,
+<a name="215" href="#215">215</a>          89, 251, 199, 616,  78, 644, 242, 722,
+<a name="216" href="#216">216</a>          25, 437, 732, 956, 275, 200, 970, 753,
+<a name="217" href="#217">217</a>         791, 336, 556, 847, 703, 236, 715,  75,
+<a name="218" href="#218">218</a>         863, 713, 785, 911, 786, 620, 551, 413,
+<a name="219" href="#219">219</a>          39, 739, 820, 808, 764, 701, 819, 173,
+<a name="220" href="#220">220</a>         989, 345, 690, 459,  60, 106, 887, 996,
+<a name="221" href="#221">221</a>         365, 673, 968, 513,  18, 419, 550, 588,
+<a name="222" href="#222">222</a>         435, 264, 789, 340, 659, 466, 356, 288,
+<a name="223" href="#223">223</a>          56, 708, 557, 488, 760, 332, 402, 168,
+<a name="224" href="#224">224</a>         202, 521, 757, 205, 706, 441, 773, 231,
+<a name="225" href="#225">225</a>         583, 386, 678, 618, 815, 279,  87, 533,
+<a name="226" href="#226">226</a>          61, 548,  92, 169, 694, 905, 198, 121,
+<a name="227" href="#227">227</a>         410, 139, 657, 640, 743, 128, 458, 866,
+<a name="228" href="#228">228</a>         501, 348, 155, 276, 101, 858, 323, 359,
+<a name="229" href="#229">229</a>     };
+<a name="230" href="#230">230</a> }
+</pre>
+<hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
+</html>
+

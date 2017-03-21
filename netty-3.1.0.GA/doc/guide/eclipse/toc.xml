@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!DOCTYPE toc
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<toc label="The Netty Project 3.1 User Guide" topic="index.html">
+   <topic label="Preface" href="preface.html">
+      <topic label="The Problem" href="preface.html#d0e20"/>
+      <topic label="The Solution" href="preface.html#d0e29"/>
+   </topic>
+   <topic label="Getting Started" href="start.html">
+      <topic label="Before Getting Started" href="start.html#d0e53"/>
+      <topic label="Writing a Discard Server" href="start.html#d0e71"/>
+      <topic label="Looking into the Received Data" href="start.html#d0e341"/>
+      <topic label="Writing an Echo Server" href="start.html#d0e426"/>
+      <topic label="Writing a Time Server" href="start.html#d0e491"/>
+      <topic label="Writing a Time Client" href="start.html#d0e711"/>
+      <topic label="&#xA;      Dealing with a Stream-based Transport&#xA;    " href="start.html#d0e841">
+         <topic label="&#xA;        One Small Caveat of Socket Buffer&#xA;      " href="start.html#d0e844"/>
+         <topic label="&#xA;        The First Solution&#xA;      " href="start.html#d0e862"/>
+         <topic label="&#xA;        The Second Solution&#xA;      " href="start.html#d0e1059"/>
+      </topic>
+      <topic label="&#xA;      Speaking in POJO instead of ChannelBuffer&#xA;    " href="start.html#start.pojo"/>
+      <topic label="&#xA;      Shutting Down Your Application&#xA;    " href="start.html#d0e1526"/>
+      <topic label="&#xA;      Summary&#xA;    " href="start.html#d0e1869"/>
+   </topic>
+   <topic label="Architectural Overview" href="architecture.html">
+      <topic label="Rich Buffer Data Structure" href="architecture.html#d0e1889"/>
+      <topic label="Universal Asynchronous I/O API" href="architecture.html#d0e1940"/>
+      <topic label="Event Model based on the Interceptor Chain Pattern" href="architecture.html#d0e1992"/>
+      <topic label="Advanced Components for More Rapid Development" href="architecture.html#d0e2054">
+         <topic label="Codec framework" href="architecture.html#d0e2059"/>
+         <topic label="SSL / TLS Support" href="architecture.html#d0e2070"/>
+         <topic label="HTTP Implementation" href="architecture.html#d0e2104"/>
+         <topic label="Google Protocol Buffer Integration" href="architecture.html#d0e2130"/>
+      </topic>
+      <topic label="Summary" href="architecture.html#d0e2152"/>
+   </topic>
+</toc>
